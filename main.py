@@ -1,4 +1,4 @@
-from modulo import cargar_generos, cargar_series, determinar_cantidad_genero, guardar_bin, guardar_cvs, mostrar_resultados_generos, obtener_coincidentes_tiempo, registro_generos, validar_tiempo
+from modulo import cargar_binario, cargar_generos, cargar_series, determinar_cantidad_genero, guardar_bin, guardar_cvs, mostrar_carga, mostrar_resultados_generos, obtener_coincidentes_tiempo, registro_generos, validar_tiempo
 
 
 def menu()->int:
@@ -108,8 +108,16 @@ def  app():
 
         elif opc == 6:
             from os.path import exists
-            if exists('.\\results.bin'):
-                pass
+            LOCATE = '.\\results.bin'
+
+            if exists(LOCATE):
+                file = open(LOCATE, 'rb')
+
+                carga = cargar_binario(file)
+
+                mostrar_carga(carga)
+
+                print("\nResultados Mostrados Correctamente...")
 
             else:
                 print('\nNo Existen Resultados Guardados...')

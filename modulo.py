@@ -28,11 +28,8 @@ class Generos:
 
 
     def __str__(self) -> str:
-        return f" Indice de Codigo: {self.indice} Genero: {self.nombre} Cantidad Listado: {self.cantidad} "
+        return f"\n[Indice de Codigo:]  {self.indice}   [Genero:]   {self.nombre}   [Cantidad Listado:] {self.cantidad}"
 
-
-    def save(self) -> str:
-        return f"{self.indice}|{self.nombre}|{self.cantidad}"
 
 def cargar_generos(vector: list)->list:
     from os.path import getsize
@@ -204,6 +201,7 @@ def guardar_cvs(lista: list)->None:
 
         file.write(msg)
 
+    file.close()
     return
 
 
@@ -251,6 +249,27 @@ def guardar_bin(registro: list)->None:
     file = open(LOCATE, 'wb')
 
     dump(registro, file)
+
+    file.close()
+    return
+
+
+def cargar_binario(file)->list:
+    from pickle import load
+
+    lib = load(file)
+
+    lib = tuple(lib)
+
+    return lib
+
+
+def mostrar_carga(carga: list)->None:
+    for i in range(len(carga)):
+
+        objeto: Generos = carga[i]
+
+        print(objeto.__str__())
 
     return
 
