@@ -230,3 +230,28 @@ def mostrar_resultados_generos(contador: list, generos: list)->None:
     return
 
 
+def registro_generos(generos: list, resutados: list)->list:
+    registro = []
+    
+    for i in range(len(generos)):
+        genero = generos[i]
+        resutado = resutados[i]
+        indx = i
+
+        objeto = Generos(indx, genero, resutado)
+
+        registro.append(objeto)
+
+    return registro
+
+
+def guardar_bin(registro: list)->None:
+    from pickle import dump
+    LOCATE = '.\\results.bin'
+    file = open(LOCATE, 'wb')
+
+    dump(registro, file)
+
+    return
+
+

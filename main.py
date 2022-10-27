@@ -1,6 +1,4 @@
-
-from pprint import pprint
-from modulo import cargar_generos, cargar_series, determinar_cantidad_genero, guardar_cvs, mostrar_resultados_generos, obtener_coincidentes_tiempo, validar_tiempo
+from modulo import cargar_generos, cargar_series, determinar_cantidad_genero, guardar_bin, guardar_cvs, mostrar_resultados_generos, obtener_coincidentes_tiempo, registro_generos, validar_tiempo
 
 
 def menu()->int:
@@ -8,19 +6,21 @@ def menu()->int:
     Interfaz Grafica Consola con retorno de opcion elejida.
     '''
     print(f'''
-    {'='*40}
+    {'='*60}
             MENU
-    {'='*40}
+    {'='*60}
         0) - Salir.
         1) - Cargar Generos.
         2) - Cargar Series.
         3) - Mostrar Series Segun Duracion.
         4) - Determinar la cantidad de Series x Genero.
-    {'='*40}
+        5) - Generar Binario de los resultados x Genero.
+        6) - Mostrar Binario de resultados.
+    {'='*60}
     ''')
     opc = ''
     flag = False
-    while not opc.isdigit() or (int(opc) < 0 or int(opc) > 4):
+    while not opc.isdigit() or (int(opc) < 0 or int(opc) > 6):
 
         if flag:
             print('Opcion Invalida...')
@@ -94,6 +94,25 @@ def  app():
 
             else:
                 print("\nAntes debe cargar los Generos y las Series...")
+
+        elif opc == 5:
+            if len(generos) != 0 and len(conteo_generos) != 0:
+                registro = registro_generos(generos, conteo_generos)
+
+                guardar_bin(registro)
+
+                print("\nResultados Guardados Correctamente...")
+
+            else:
+                print("\nAntes debe cargar los Generos y Resultados...")
+
+        elif opc == 6:
+            from os.path import exists
+            if exists('.\\results.bin'):
+                pass
+
+            else:
+                print('\nNo Existen Resultados Guardados...')
 
         else:
             exit('Done!')
