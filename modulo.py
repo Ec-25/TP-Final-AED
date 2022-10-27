@@ -13,7 +13,7 @@ class Series:
 
 
     def __str__(self) -> str:
-        return f' Serie: {self.series_title} Poster: {self.poster_link} Runtime: {self.runtime_series} Cerificacion: {self.certificate} Tiempo Prom de Episodios: {self.runtime_episodes} Genero: {self.genre} Rating: {self.rating} Resumen: {self.overwiew} Votos: {self.no_vote} '
+        return f' Serie: {self.series_title} ; Runtime: {self.runtime_series} ; Cerificacion: {self.certificate} ; Tiempo Prom de Episodios: {self.runtime_episodes} ; Genero: {self.genre} ; Rating: {self.rating} ; Resumen: {self.overwiew} ; Votos: {self.no_vote} '
 
 
 class Generos:
@@ -144,5 +144,40 @@ def formatear_genero(objeto: Series, generos: list)->Series:
     objeto.genre = index
 
     return objeto
+
+
+def validar_tiempo(msg: str)->int:
+    """
+    El mensaje indica lo que el usuario debe cargar.
+    """
+    x = ''
+    flag = False
+    while True:
+        if flag:
+            print('Carga Invalida, Ingrese un nro. valido...')
+
+        else:
+            flag = True
+
+        x = input(f"\n{msg}: ")
+
+        if x.isdigit() and int(x) >= 0:
+            return int(x)
+
+        else:
+            pass
+
+
+def obtener_coincidentes_tiempo(desde: int, hasta: int, lista: list):
+    coincidentes = []
+    duracion = 0
+    for i in range(len(lista)):
+        elemento: Series = lista[i]
+
+        if desde < elemento.runtime_episodes < hasta:
+            coincidentes.append(elemento)
+            duracion += elemento.runtime_episodes
+
+    return coincidentes, duracion
 
 
