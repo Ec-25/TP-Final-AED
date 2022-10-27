@@ -207,3 +207,26 @@ def guardar_cvs(lista: list)->None:
     return
 
 
+def determinar_cantidad_genero(bault: list, series: list)->list:
+    for i in range(len(series)):
+        objeto: Series = series[i]
+        genero = objeto.genre
+
+        bault[genero] += 1
+
+    return bault
+
+
+def mostrar_resultados_generos(contador: list, generos: list)->None:
+    for i in range(len(contador)):
+        genero = generos[i]
+        resultado = contador[i]
+        if resultado > 1:
+            print(f"\nHay '{resultado}' series de Genero '{genero}'")
+
+        else:
+            print(f"\nHay '{resultado}' serie de Genero '{genero}'")
+
+    return
+
+

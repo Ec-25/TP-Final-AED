@@ -1,6 +1,6 @@
 
 from pprint import pprint
-from modulo import cargar_generos, cargar_series, guardar_cvs, obtener_coincidentes_tiempo, validar_tiempo
+from modulo import cargar_generos, cargar_series, determinar_cantidad_genero, guardar_cvs, mostrar_resultados_generos, obtener_coincidentes_tiempo, validar_tiempo
 
 
 def menu()->int:
@@ -15,11 +15,12 @@ def menu()->int:
         1) - Cargar Generos.
         2) - Cargar Series.
         3) - Mostrar Series Segun Duracion.
+        4) - Determinar la cantidad de Series x Genero.
     {'='*40}
     ''')
     opc = ''
     flag = False
-    while not opc.isdigit() or (int(opc) < 0 or int(opc) > 3):
+    while not opc.isdigit() or (int(opc) < 0 or int(opc) > 4):
 
         if flag:
             print('Opcion Invalida...')
@@ -37,11 +38,15 @@ def  app():
     '''
     generos = []
     series = []
+    conteo_generos = []
     while True:
         opc = menu()
 
         if opc == 1:
             generos = cargar_generos(generos)
+            
+            conteo_generos = [0] * len(generos) 
+
             print('\nGeneros Cargados Correctamente')
 
         elif opc == 2:
@@ -79,7 +84,17 @@ def  app():
             else:
                 print("Cargue las 'Series' antes de volver a intentar.\n")
             
-            
+        elif opc == 4:
+            if len(series) != 0 and len(generos) != 0:
+                conteo_generos = determinar_cantidad_genero(conteo_generos, series)
+                
+                mostrar_resultados_generos(conteo_generos, generos)
+
+                print("\nResultados Mostrados Correctamente...")
+
+            else:
+                print("\nAntes debe cargar los Generos y las Series...")
+
         else:
             exit('Done!')
 
