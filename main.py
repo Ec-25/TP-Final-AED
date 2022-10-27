@@ -1,6 +1,6 @@
 
 from pprint import pprint
-from modulo import cargar_generos, cargar_series, obtener_coincidentes_tiempo, validar_tiempo
+from modulo import cargar_generos, cargar_series, guardar_cvs, obtener_coincidentes_tiempo, validar_tiempo
 
 
 def menu()->int:
@@ -65,10 +65,21 @@ def  app():
                 
                 print(f"\nLa duracion promedio de las series coincidentes es {round(duracion/len(coincidentes), 2)} minutos.")
 
+
+                eleccion = input("\nDesea Guardar los resultados Obtenidos? [S|N]  ")
+
+                if eleccion in "sSyY":
+                    guardar_cvs(coincidentes)
+
+                    print("\nDatos Guardados Correctamente...")
+                
+                else:
+                    print("\nDatos Mostrados Correctamente...")
+
             else:
                 print("Cargue las 'Series' antes de volver a intentar.\n")
             
-
+            
         else:
             exit('Done!')
 

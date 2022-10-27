@@ -16,6 +16,10 @@ class Series:
         return f' Serie: {self.series_title} ; Runtime: {self.runtime_series} ; Cerificacion: {self.certificate} ; Tiempo Prom de Episodios: {self.runtime_episodes} ; Genero: {self.genre} ; Rating: {self.rating} ; Resumen: {self.overwiew} ; Votos: {self.no_vote} '
 
 
+    def save(self) -> str:
+        return f'{self.series_title}|{self.runtime_series}|{self.certificate}|{self.runtime_episodes}|{self.genre}|{self.rating}|{self.overwiew}|{self.no_vote}'    
+
+
 class Generos:
     def __init__(self, index:int, nombre:str, cantidad:int) -> None:
         self.indice = index
@@ -26,6 +30,9 @@ class Generos:
     def __str__(self) -> str:
         return f" Indice de Codigo: {self.indice} Genero: {self.nombre} Cantidad Listado: {self.cantidad} "
 
+
+    def save(self) -> str:
+        return f"{self.indice}|{self.nombre}|{self.cantidad}"
 
 def cargar_generos(vector: list)->list:
     from os.path import getsize
@@ -179,5 +186,24 @@ def obtener_coincidentes_tiempo(desde: int, hasta: int, lista: list):
             duracion += elemento.runtime_episodes
 
     return coincidentes, duracion
+
+
+def guardar_cvs(lista: list)->None:
+    LOCATE = '.\\series_saved.csv'
+    file = open(LOCATE, 'wt')
+
+    line = 'Poster_Link|Series_Title|Runtime_of_Series|Certificate|Runtime_of_Episodes|Genre|IMDB_Rating|Overview|No_of_Votes\n'
+
+    file.write(line)
+
+    for i in range(len(lista)):
+        objeto: Series = lista[i]
+            
+        line = objeto.save()
+        msg = line + '\n'
+
+        file.write(msg)
+
+    return
 
 
