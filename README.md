@@ -1,3 +1,5 @@
+# TP-Final-AED
+Ejercicio de Trabajo Practico, Algoritmo y Estructura de Datos UTN
 Se pide:
 
 1) Procesar el archivo de texto generos.txt para crear un vector que contenga los nombres de los mismos (Únicamente los nombres y en el mismo orden en el que se encuentran en el archivo).
@@ -31,9 +33,10 @@ Cumpliendo con las siguientes reglas:
 
 5) Generar a partir del vector de conteo un archivo binario en el que se almacenen registros que contengan:
 
-Número del género
-Nombre del género
-Cantidad
+            Número del género
+            Nombre del género
+            Cantidad
+
 6) Mostrar el archivo generado en el punto 5.
 
 7) Buscar si en el vector de series se encuentra una serie con el campo Series_Title igual a tit, siendo tit un valor que se carga por teclado. Si se encuentra incrementar su número de votos en uno. Si no se encuentra mostrar un mensaje.
