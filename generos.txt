@@ -1,0 +1,23 @@
+Action
+Action Drama
+Adventure
+Adventure Drama
+Animation
+Biography
+Comedy
+Comedy Drama
+Crime
+Documentary
+Drama
+Family
+Fantasy
+Game-Show
+History
+Horror
+Mistery
+Reality-TV
+Romance
+Sci-Fi
+Talk-Show
+Thriller
+Western
