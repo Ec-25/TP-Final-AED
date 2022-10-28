@@ -1,4 +1,5 @@
-from modulo import cargar_binario, cargar_generos, cargar_series, determinar_cantidad_genero, guardar_bin, guardar_cvs, mostrar_carga, mostrar_resultados_generos, obtener_coincidentes_tiempo, registro_generos, validar_tiempo
+
+from modulo import buscar_serie, cargar_binario, cargar_generos, cargar_series, determinar_cantidad_genero, guardar_bin, guardar_cvs, mostrar_carga, mostrar_resultados_generos, obtener_coincidentes_tiempo, registro_generos, validar_tiempo
 
 
 def menu()->int:
@@ -16,11 +17,13 @@ def menu()->int:
         4) - Determinar la cantidad de Series x Genero.
         5) - Generar Binario de los resultados x Genero.
         6) - Mostrar Binario de resultados.
+        7) - Buscar Serie x Nombre.
     {'='*60}
     ''')
     opc = ''
     flag = False
-    while not opc.isdigit() or (int(opc) < 0 or int(opc) > 6):
+
+    while not opc.isdigit() or (int(opc) < 0 or int(opc) > 7):
 
         if flag:
             print('Opcion Invalida...')
@@ -51,6 +54,7 @@ def  app():
 
         elif opc == 2:
             series, c = cargar_series(series, generos)
+
             if c != 0:
                 print('\nSeries Cargados Correctamente')
                 print(f"Se cargaron {len(series)} series, y {c-len(series)} fueron descartadas...")
@@ -86,6 +90,7 @@ def  app():
             
         elif opc == 4:
             if len(series) != 0 and len(generos) != 0:
+
                 conteo_generos = determinar_cantidad_genero(conteo_generos, series)
                 
                 mostrar_resultados_generos(conteo_generos, generos)
@@ -114,6 +119,7 @@ def  app():
                 file = open(LOCATE, 'rb')
 
                 carga = cargar_binario(file)
+                file.close()
 
                 mostrar_carga(carga)
 
@@ -121,6 +127,15 @@ def  app():
 
             else:
                 print('\nNo Existen Resultados Guardados...')
+
+        elif opc == 7:
+            if len(series) != 0:
+                titulo = input('\nIngrese el titulo de la serie a buscar: ')
+            
+                series = buscar_serie(titulo, series)
+
+            else:
+                print('\nAntes de buscar una serie debe Cargarlas...')
 
         else:
             exit('Done!')

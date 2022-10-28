@@ -66,6 +66,7 @@ def cargar_series(vector: list, codigos: list)->list:
                 obj = process_line(line[:-1])
 
                 flag_cumple, obj = cumple_duracion(obj)
+                
                 if not flag_cumple:
                     continue
 
@@ -140,7 +141,6 @@ def cumple_duracion(registro: Series)->Series:
 
     return t, registro
     
-
 
 def formatear_genero(objeto: Series, generos: list)->Series:
     genre = objeto.genre
@@ -272,5 +272,28 @@ def mostrar_carga(carga: list)->None:
         print(objeto.__str__())
 
     return
+
+
+def buscar_serie(a_buscar: str, lista: list)->list:
+    flag = False
+
+    for i in range(len(lista)):
+        objeto: Series = lista[i]
+
+        if objeto.series_title == a_buscar:
+
+            objeto.no_vote += 1
+            
+            flag = True
+            break
+
+    if flag:
+        print("\nSe ha encontrado una coincidencia y se ha visitado...\n")
+        print(objeto.__str__())
+
+    else:
+        print(f"\nNo se ha encontrado ninguna coincidencia con {a_buscar}")
+
+    return lista
 
 
