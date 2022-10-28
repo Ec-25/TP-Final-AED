@@ -13,7 +13,7 @@ class Series:
 
 
     def __str__(self) -> str:
-        return f' Serie: {self.series_title} ; Runtime: {self.runtime_series} ; Cerificacion: {self.certificate} ; Tiempo Prom de Episodios: {self.runtime_episodes} ; Genero: {self.genre} ; Rating: {self.rating} ; Resumen: {self.overwiew} ; Votos: {self.no_vote} '
+        return f' Serie: {self.series_title} ; Runtime: {self.runtime_series} ; Cerificacion: {self.certificate} ; Tiempo Prom de Episodios: {self.runtime_episodes} min ; Genero: {self.genre} ; Rating: {self.rating} ; Resumen: {self.overwiew} ; Votos: {self.no_vote} '
 
 
     def save(self) -> str:
