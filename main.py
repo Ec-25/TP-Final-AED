@@ -62,6 +62,8 @@ def  app():
             else:
                 print("Cargue los 'Generos' antes de volver a intentar.\n")
 
+            del c
+
         elif opc == 3:
             if len(series) != 0:
                 desde = validar_tiempo("Indique el Inicio")
@@ -88,6 +90,8 @@ def  app():
             else:
                 print("Cargue las 'Series' antes de volver a intentar.\n")
             
+            del desde, hasta, coincidentes, duracion, eleccion
+
         elif opc == 4:
             if len(series) != 0 and len(generos) != 0:
 
@@ -111,6 +115,8 @@ def  app():
             else:
                 print("\nAntes debe cargar los Generos y Resultados...")
 
+            del registro
+
         elif opc == 6:
             from os.path import exists
             LOCATE = '.\\results.bin'
@@ -128,6 +134,8 @@ def  app():
             else:
                 print('\nNo Existen Resultados Guardados...')
 
+            del file, carga
+
         elif opc == 7:
             if len(series) != 0:
                 titulo = input('\nIngrese el titulo de la serie a buscar: ')
@@ -136,6 +144,8 @@ def  app():
 
             else:
                 print('\nAntes de buscar una serie debe Cargarlas...')
+
+            del titulo
 
         else:
             exit('Done!')
