@@ -1,4 +1,4 @@
-
+from os.path import exists
 from modulo import buscar_serie, cargar_binario, cargar_generos, cargar_series, determinar_cantidad_genero, guardar_bin, guardar_cvs, mostrar_carga, mostrar_resultados_generos, obtener_coincidentes_tiempo, registro_generos, validar_tiempo
 
 
@@ -118,7 +118,6 @@ def  app():
             del registro
 
         elif opc == 6:
-            from os.path import exists
             LOCATE = '.\\results.bin'
 
             if exists(LOCATE):
