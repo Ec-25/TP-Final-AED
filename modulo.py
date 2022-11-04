@@ -1,3 +1,5 @@
+from os.path import getsize
+from pickle import dump, load
 
 class Series:
     def __init__(self, poster:str, title:str, runtime:str, certificate:str, episodes:int, genre:int, rating:float, overwiew:str, votes:int) -> None:
@@ -32,7 +34,6 @@ class Generos:
 
 
 def cargar_generos(vector: list)->list:
-    from os.path import getsize
     LOCATE = '.\\generos.txt'
 
     file = open(LOCATE, 'rt')
@@ -48,7 +49,6 @@ def cargar_generos(vector: list)->list:
 
 
 def cargar_series(vector: list, codigos: list)->list:
-    from os.path import getsize
     LOCATE = '.\\series_aed.csv'
 
     file = open(LOCATE, 'rt')
@@ -244,7 +244,6 @@ def registro_generos(generos: list, resutados: list)->list:
 
 
 def guardar_bin(registro: list)->None:
-    from pickle import dump
     LOCATE = '.\\results.bin'
     file = open(LOCATE, 'wb')
 
@@ -255,8 +254,6 @@ def guardar_bin(registro: list)->None:
 
 
 def cargar_binario(file)->list:
-    from pickle import load
-
     lib = load(file)
 
     lib = tuple(lib)
