@@ -48,9 +48,14 @@ def  app():
         if opc == 1:
             generos = cargar_generos(generos)
             
-            conteo_generos = [0] * len(generos) 
+            if len(generos) != 0:
+                conteo_generos = [0] * len(generos)
 
-            print('\nGeneros Cargados Correctamente')
+                print('\nGeneros Cargados Correctamente')
+            
+            else:
+
+                print('No se pudieron cargar los Generos.')
 
         elif opc == 2:
             series, c = cargar_series(series, generos)

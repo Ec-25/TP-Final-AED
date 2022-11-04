@@ -1,4 +1,4 @@
-from os.path import getsize
+from os.path import getsize, exists
 from pickle import dump, load
 
 class Series:
@@ -35,57 +35,67 @@ class Generos:
 
 def cargar_generos(vector: list)->list:
     LOCATE = '.\\generos.txt'
+    if exists(LOCATE):
 
-    file = open(LOCATE, 'rt')
-    SIZE = getsize(LOCATE)
+        file = open(LOCATE, 'rt')
+        SIZE = getsize(LOCATE)
+        
+        # tell() position actual|| seek() move pointer
+        while file.tell() < SIZE:
+            obj = file.readline()
+            vector.append(obj[:-1])
+
+        file.close()
+        return vector
     
-    # tell() position actual|| seek() move pointer
-    while file.tell() < SIZE:
-        obj = file.readline()
-        vector.append(obj[:-1])
-
-    file.close()
-    return vector
+    else:
+        print('El archivo no existe en el directorio del programa.')
+        return []
 
 
 def cargar_series(vector: list, codigos: list)->list:
     LOCATE = '.\\series_aed.csv'
+    if exists(LOCATE):
 
-    file = open(LOCATE, 'rt')
-    SIZE = getsize(LOCATE)
+        file = open(LOCATE, 'rt')
+        SIZE = getsize(LOCATE)
     
-    if not codigos == []:
-        flag = False
-        cont = 0
-        # tell() position actual|| seek() move pointer
-        while file.tell() < SIZE:
-            cont += 1
-            line = file.readline()
-            
-            if flag:
-                obj = process_line(line[:-1])
-
-                flag_cumple, obj = cumple_duracion(obj)
+        if not codigos == []:
+            flag = False
+            cont = 0
+            # tell() position actual|| seek() move pointer
+            while file.tell() < SIZE:
+                cont += 1
+                line = file.readline()
                 
-                if not flag_cumple:
-                    continue
+                if flag:
+                    obj = process_line(line[:-1])
 
-                obj = formatear_genero(obj, codigos)
+                    flag_cumple, obj = cumple_duracion(obj)
+                    
+                    if not flag_cumple:
+                        continue
 
-                pos = buscar_posicion(obj.no_vote, vector)
+                    obj = formatear_genero(obj, codigos)
 
-                vector.insert(pos, obj)
+                    pos = buscar_posicion(obj.no_vote, vector)
 
-            else:
-                flag = True
+                    vector.insert(pos, obj)
+
+                else:
+                    flag = True
 
 
-        file.close()
-        return vector, cont
-    
+            file.close()
+            return vector, cont
+
+        else:
+            file.close()
+            print('\nNo Han sido cargados los Codigos...')
+            return [], 0
+
     else:
-        file.close()
-        print('\nNo Han sido cargados los Codigos...')
+        print('No existe el archivo de series en el directorio del programa.')
         return [], 0
 
 
